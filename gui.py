@@ -58,10 +58,11 @@ class ClipsApp:
 
     def mostrar_estado(self):
         self.txt_salida.delete("1.0", tk.END)
-        self.txt_salida.insert(tk.END, "Hechos:\n")
+        self.txt_salida.insert(tk.END, "Hechos actuales:\n")
         for hecho in self.engine.listar_hechos():
             self.txt_salida.insert(tk.END, f"  {hecho}\n")
 
-        self.txt_salida.insert(tk.END, "\nReglas:\n")
+        self.txt_salida.insert(tk.END, "\nReglas cargadas:\n")
         for regla in self.engine.listar_reglas():
             self.txt_salida.insert(tk.END, f"  {regla}\n")
+
