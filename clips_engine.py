@@ -28,3 +28,7 @@ class ClipsEngine:
     def listar_reglas(self):
         """Devuelve lista de reglas"""
         return [str(rule) for rule in self.env.rules()]
+    
+    def reiniciar(self):
+        """Reinicia los hechos (pero mantiene las reglas)"""
+        self.env.reset()
