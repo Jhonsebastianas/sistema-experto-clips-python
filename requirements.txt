@@ -1,0 +1,13 @@
+# Sistema Experto CLIPS - Dependencias
+# =====================================
+
+# Motor de inferencia CLIPS
+clips>=1.0.0
+
+# Interfaz gráfica (incluida con Python)
+# tkinter
+
+# Desarrollo y pruebas (opcionales)
+# pytest>=6.0.0
+# black>=21.0.0
+# flake8>=3.8.0
