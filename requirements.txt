@@ -1,8 +1,17 @@
-# Sistema Experto CLIPS - Dependencias
-# =====================================
+# Sistema Financiero Inteligente - Dependencias
+# =============================================
 
 # Motor de inferencia CLIPS
-clips>=1.0.0
+clipspy>=1.0.0
+
+# Sistema difuso
+scikit-fuzzy>=0.4.2
+numpy>=1.21.0
+scipy>=1.7.0
+networkx>=2.5
+
+# Visualización
+matplotlib>=3.3.0
 
 # Interfaz gráfica (incluida con Python)
 # tkinter
