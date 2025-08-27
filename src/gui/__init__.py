@@ -6,6 +6,6 @@ Este paquete contiene la interfaz gráfica para el sistema experto
 de finanzas personales.
 """
 
-from .main_window import SistemaExpertoGUI
+from .main_window import SistemaFinancieroGUI
 
-__all__ = ['SistemaExpertoGUI']
+__all__ = ['SistemaFinancieroGUI']

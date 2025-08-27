@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
 """
-Sistema Experto CLIPS - Punto de Entrada Principal
-==================================================
+Sistema Financiero Inteligente - Punto de Entrada Principal
+==========================================================
 
 Este archivo es el punto de entrada principal para ejecutar
-el sistema experto de finanzas personales.
+el sistema financiero inteligente que integra:
+- Sistema Experto CLIPS para finanzas personales
+- Sistema Difuso para recomendaciones de inversión
 """
 
 import sys
@@ -16,17 +18,17 @@ sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'src'))
 def main():
     """Función principal"""
     try:
-        from gui.main_window import SistemaExpertoGUI
+        from gui.main_window import SistemaFinancieroGUI
         import tkinter as tk
         
         # Crear y ejecutar la interfaz gráfica
         root = tk.Tk()
-        app = SistemaExpertoGUI(root)
+        app = SistemaFinancieroGUI(root)
         root.mainloop()
         
     except ImportError as e:
         print(f"❌ Error de importación: {e}")
-        print("💡 Asegúrate de que el módulo clips esté instalado: pip install clips")
+        print("💡 Asegúrate de que las dependencias estén instaladas: pip install -r requirements.txt")
         print("📁 Verifica que la estructura del proyecto sea correcta")
         return 1
     except Exception as e:
