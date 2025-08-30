@@ -181,6 +181,8 @@ class SistemaFinancieroGUI:
 • R1: Ahorro bajo ∨ Riesgo alto → Inversión conservadora
 • R2: Ahorro medio ∧ Riesgo moderado → Inversión moderada
 • R3: Ahorro alto ∧ Riesgo bajo → Inversión agresiva
+• R4: Si ahorro es medio ∧ riesgo es bajo → inversión es moderada
+• R5: Si ahorro es alto ∧ riesgo es moderado → inversión es agresiva
 
 ⚙️ Métodos de Inferencia:
 • Mamdani con defuzzificación por centroide
