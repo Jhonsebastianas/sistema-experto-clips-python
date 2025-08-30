@@ -72,15 +72,16 @@ class SistemaDifusoFinanciero:
         # Conjuntos difusos gaussianos según especificación
         self.riesgo_inversion = ctrl.Antecedent(np.arange(0, 11, 0.1), 'riesgo_inversion')
         
-        # Definir conjuntos difusos gaussianos con σ=1.5
-        # Bajo: Media en 0, σ=1.5
-        self.riesgo_inversion['bajo'] = fuzz.gaussmf(self.riesgo_inversion.universe, 0, 1.5)
-        
-        # Moderado: Media en 5, σ=1.5
-        self.riesgo_inversion['moderado'] = fuzz.gaussmf(self.riesgo_inversion.universe, 5, 1.5)
-        
-        # Alto: Media en 10, σ=1.5
-        self.riesgo_inversion['alto'] = fuzz.gaussmf(self.riesgo_inversion.universe, 10, 1.5)
+        # Definir conjuntos difusos trapezoidales (cuadrados)
+        # Bajo: empieza en 0, máximo hasta 3
+        self.riesgo_inversion['bajo'] = fuzz.trapmf(self.riesgo_inversion.universe, [0, 0, 2, 3])
+
+        # Moderado: centrado en 5, ancho entre 2 y 8
+        self.riesgo_inversion['moderado'] = fuzz.trapmf(self.riesgo_inversion.universe, [2, 4, 6, 8])
+
+        # Alto: empieza desde 7 y llega a 10
+        self.riesgo_inversion['alto'] = fuzz.trapmf(self.riesgo_inversion.universe, [7, 8, 10, 10])
+
         
         # Variable de salida: Nivel de inversión (0-50%)
         # Conjuntos difusos triangulares según especificación
