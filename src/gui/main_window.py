@@ -186,7 +186,6 @@ class SistemaFinancieroGUI:
 
 ⚙️ Métodos de Inferencia:
 • Mamdani con defuzzificación por centroide
-• TSK con singletones y media de pesos
         """
         
         self.text_resultado_difuso.insert(tk.END, info_text)
