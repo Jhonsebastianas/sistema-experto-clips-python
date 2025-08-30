@@ -176,7 +176,7 @@ print(f"Estrategia: {resultado_mamdani['etiqueta']}")
 
 ### Métodos de Inferencia
 
-#### Mamdani
+#### Mamdani (sistema difuso)
 - Usa conjuntos difusos para la salida
 - Defuzzificación por centroide
 - Resultado más suave y continuo
@@ -249,22 +249,6 @@ Para información detallada sobre el uso, API y personalización, consulta:
 ## 📄 Licencia
 
 Este proyecto está bajo la Licencia MIT. Ver el archivo [LICENSE](LICENSE) para más detalles.
-
-## 🆘 Soporte
-
-- **Issues**: Abre un issue en GitHub
-- **Documentación**: Consulta [docs/README.md](docs/README.md)
-- **Pruebas**: Ejecuta los archivos de prueba para verificar la instalación
-
-## 🔄 Cambios Recientes
-
-### Versión 2.0.0 - Refactorización Completa
-
-- ✅ **Nueva estructura de proyecto** con buenas prácticas
-- ✅ **Sistema de hechos** con `assert` en lugar de `printout`
-- ✅ **API modular** y fácil de extender
-- ✅ **Documentación completa** y ejemplos
-- ✅ **Pruebas automatizadas**
 
 ---
 
