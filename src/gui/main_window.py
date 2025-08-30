@@ -95,9 +95,9 @@ class SistemaFinancieroGUI:
         scrollbar.pack(side="right", fill="y")
         
         # Botón para mostrar estado del sistema
-        btn_estado = ttk.Button(frame_output, text="📋 Mostrar Estado del Sistema", 
-                               command=self._mostrar_estado_sistema)
-        btn_estado.pack(pady=10)
+        # btn_estado = ttk.Button(frame_output, text="📋 Mostrar Estado del Sistema", 
+        #                        command=self._mostrar_estado_sistema)
+        # btn_estado.pack(pady=10)
     
     def _crear_tab_difuso(self):
         """Crea la pestaña del sistema difuso"""
