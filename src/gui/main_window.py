@@ -134,17 +134,17 @@ class SistemaFinancieroGUI:
         btn_frame = ttk.Frame(frame_inputs)
         btn_frame.pack(pady=20)
         
-        btn_mamdani = ttk.Button(btn_frame, text="🌊 Evaluar Mamdani", 
+        btn_mamdani = ttk.Button(btn_frame, text="🌊 Evaluar", 
                                 command=self._evaluar_mamdani, style="Accent.TButton")
         btn_mamdani.pack(pady=5)
         
-        btn_tsk = ttk.Button(btn_frame, text="⚡ Evaluar TSK", 
-                            command=self._evaluar_tsk, style="Accent.TButton")
-        btn_tsk.pack(pady=5)
+        # btn_tsk = ttk.Button(btn_frame, text="⚡ Evaluar TSK", 
+        #                     command=self._evaluar_tsk, style="Accent.TButton")
+        # btn_tsk.pack(pady=5)
         
-        btn_ambos = ttk.Button(btn_frame, text="🔄 Evaluar Ambos", 
-                              command=self._evaluar_ambos, style="Accent.TButton")
-        btn_ambos.pack(pady=5)
+        # btn_ambos = ttk.Button(btn_frame, text="🔄 Evaluar Ambos", 
+        #                       command=self._evaluar_ambos, style="Accent.TButton")
+        # btn_ambos.pack(pady=5)
         
         # Botón para visualizar conjuntos difusos
         btn_visualizar = ttk.Button(frame_inputs, text="📊 Ver Conjuntos Difusos", 
@@ -260,6 +260,8 @@ Salida:
 R1: Si ahorro es bajo ∨ riesgo es alto → inversión es conservadora
 R2: Si ahorro es medio ∧ riesgo es moderado → inversión es moderada
 R3: Si ahorro es alto ∧ riesgo es bajo → inversión es agresiva
+R4: Si ahorro es medio ∧ riesgo es bajo → inversión es moderada
+R5: Si ahorro es alto ∧ riesgo es moderado → inversión es agresiva
 
 ⚙️ MÉTODOS DE INFERENCIA
 =========================
@@ -359,7 +361,7 @@ TSK (Takagi-Sugeno-Kang):
             self.text_resultado_difuso.delete("1.0", tk.END)
             
             resultado_texto = f"""
-🌊 RESULTADO MÉTODO MAMDANI
+🌊 RESULTADO MÉTODO DIFUSO
 ============================
 
 📥 Entradas:
@@ -475,6 +477,7 @@ validando la consistencia del sistema difuso.
     def _visualizar_conjuntos(self):
         """Visualiza los conjuntos difusos del sistema"""
         try:
+            self._evaluar_mamdani()
             self.sistema_difuso.visualizar_conjuntos_difusos()
         except Exception as e:
             messagebox.showerror("Error", f"❌ Error al visualizar: {str(e)}")

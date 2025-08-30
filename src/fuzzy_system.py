@@ -104,6 +104,8 @@ class SistemaDifusoFinanciero:
         - R1: Si ahorro es bajo ∨ riesgo es alto → inversión es conservadora
         - R2: Si ahorro es medio ∧ riesgo es moderado → inversión es moderada  
         - R3: Si ahorro es alto ∧ riesgo es bajo → inversión es agresiva
+        - R4: Si ahorro es medio ∧ riesgo es bajo → inversión es moderada
+        - R5: Si ahorro es alto ∧ riesgo es moderado → inversión es agresiva
         """
         
         # Regla 1: Ahorro bajo O riesgo alto → Inversión conservadora
@@ -126,6 +128,18 @@ class SistemaDifusoFinanciero:
             (self.ahorro_mensual['alto'] & self.riesgo_inversion['bajo']),
             self.nivel_inversion['agresiva']
         )
+
+        # Regla 4: Ahorro medio Y riesgo bajo → Inversión moderada
+        self.regla4 = ctrl.Rule(
+            (self.ahorro_mensual['medio'] & self.riesgo_inversion['bajo']),
+            self.nivel_inversion['moderada']
+        )
+
+        # Regla 5: Ahorro alto Y riesgo moderado → Inversión agresiva
+        self.regla5 = ctrl.Rule(
+            (self.ahorro_mensual['alto'] & self.riesgo_inversion['moderado']),
+            self.nivel_inversion['agresiva']
+        )
     
     def _crear_sistemas_control(self):
         """
@@ -137,7 +151,7 @@ class SistemaDifusoFinanciero:
         
         # Sistema Mamdani: Conjuntos difusos de salida
         self.sistema_mamdani = ctrl.ControlSystem([
-            self.regla1, self.regla2, self.regla3
+            self.regla1, self.regla2, self.regla3, self.regla4, self.regla5
         ])
         
         # Simulador para Mamdani
@@ -167,10 +181,21 @@ class SistemaDifusoFinanciero:
             (self.ahorro_mensual['alto'] & self.riesgo_inversion['bajo']),
             self.nivel_inversion_tsk['agresiva']
         )
+
+        # Reglas TSK con singletones
+        self.regla4_tsk = ctrl.Rule(
+            (self.ahorro_mensual['medio'] & self.riesgo_inversion['bajo']),
+            self.nivel_inversion_tsk['moderada']
+        )
+
+        self.regla5_tsk = ctrl.Rule(
+            (self.ahorro_mensual['alto'] & self.riesgo_inversion['moderado']),
+            self.nivel_inversion_tsk['agresiva']
+        )
         
         # Sistema TSK
         self.sistema_tsk = ctrl.ControlSystem([
-            self.regla1_tsk, self.regla2_tsk, self.regla3_tsk
+            self.regla1_tsk, self.regla2_tsk, self.regla3_tsk, self.regla4_tsk, self.regla5_tsk
         ])
         
         # Simulador para TSK
@@ -208,7 +233,7 @@ class SistemaDifusoFinanciero:
             etiqueta = self._determinar_etiqueta(resultado_numerico)
             
             return {
-                'metodo': 'Mamdani',
+                'metodo': 'Difuso',
                 'ahorro_entrada': ahorro,
                 'riesgo_entrada': riesgo,
                 'nivel_inversion': round(resultado_numerico, 2),
@@ -323,27 +348,16 @@ class SistemaDifusoFinanciero:
         """
         try:
             # Crear figura con subplots
-            fig, axes = plt.subplots(1, 3, figsize=(15, 5))
-            fig.suptitle('Sistema Difuso Financiero - Conjuntos Difusos', fontsize=16)
             
             # Ahorro mensual
-            self.ahorro_mensual.view(ax=axes[0])
-            axes[0].set_title('Ahorro Mensual (USD)')
-            axes[0].set_xlabel('USD')
-            axes[0].set_ylabel('Pertenencia')
+            self.ahorro_mensual.view()
             
             # Riesgo de inversión
-            self.riesgo_inversion.view(ax=axes[1])
-            axes[1].set_title('Riesgo de Inversión')
-            axes[1].set_xlabel('Nivel de Riesgo')
-            axes[1].set_ylabel('Pertenencia')
+            self.riesgo_inversion.view()
             
             # Nivel de inversión
             #self.nivel_inversion.view(ax=axes[2])
             self.nivel_inversion.view(sim=self.simulador_mamdani)
-            axes[2].set_title('Nivel de Inversión (%)')
-            axes[2].set_xlabel('Porcentaje')
-            axes[2].set_ylabel('Pertenencia')
             
             plt.tight_layout()
             
