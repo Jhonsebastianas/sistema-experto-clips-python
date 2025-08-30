@@ -171,6 +171,8 @@ print(f"Estrategia: {resultado_mamdani['etiqueta']}")
 1. **R1**: Si ahorro es bajo ∨ riesgo es alto → inversión es conservadora
 2. **R2**: Si ahorro es medio ∧ riesgo es moderado → inversión es moderada
 3. **R3**: Si ahorro es alto ∧ riesgo es bajo → inversión es agresiva
+2. **R4**: Si ahorro es medio ∧ riesgo es bajo → inversión es moderada
+3. **R5**: R5: Si ahorro es alto ∧ riesgo es moderado → inversión es agresiva
 
 ### Métodos de Inferencia
 
